@@ -16,7 +16,7 @@ import javax.persistence.*;
 public class UserLogin {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "iduser_login")
+    @Column(name = "id")
     Integer id;
     @Column(name = "user_login_identifiant")
     String identifiant;
