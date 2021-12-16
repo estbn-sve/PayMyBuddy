@@ -16,7 +16,7 @@ import javax.persistence.*;
 public class AppSolde {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "idApp_Solde")
+    @Column(name = "id")
     Integer id;
     @Column(name = "app_Solde")
     Double solde;

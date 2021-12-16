@@ -4,7 +4,6 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.apache.catalina.User;
 
 import javax.persistence.*;
 
@@ -17,12 +16,12 @@ import javax.persistence.*;
 public class UserContact {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "idUser_contact")
+    @Column(name = "id")
     Integer id;
     @OneToOne
     @JoinColumn (name = "user_id_first")
-    Users id_user_first;
+    User id_user_first;
     @OneToOne
     @JoinColumn (name = "user_id_second")
-    Users id_user_second;
+    User id_user_second;
 }

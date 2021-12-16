@@ -12,15 +12,15 @@ import javax.persistence.*;
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "users")
-public class Users {
+@Table(name = "user")
+public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "idUsers")
+    @Column(name = "id")
     Integer id;
-    @Column(name = "user_lastName")
+    @Column(name = "user_last_name")
     String lastName;
-    @Column(name = "user_firstName")
+    @Column(name = "user_first_name")
     String firstName;
     @Column(name = "user_email")
     String email;
@@ -28,7 +28,7 @@ public class Users {
     Double solde;
     @Column(name = "user_iban")
     String iban;
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "user_login_id")
     UserLogin userLogin;
 
