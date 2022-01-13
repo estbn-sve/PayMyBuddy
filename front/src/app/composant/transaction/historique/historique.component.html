@@ -1,0 +1,26 @@
+<div class ="col-sm">
+  <table class="table">
+    <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Date</th>
+      <th scope="col">From</th>
+      <th scope="col">To</th>
+      <th scope="col">Montant envoyer</th>
+      <th scope="col">Commission</th>
+      <th scope="col">Montant reçu</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let transaction of transactions">
+      <th scope="row">{{transaction.id}}</th>
+      <td>{{transaction.date}}</td>
+      <td>{{transaction.id_user_from.email}}</td>
+      <td>{{transaction.id_user_to.email}}</td>
+      <td>{{transaction.solde_from}}</td>
+      <td>{{transaction.solde_app}}</td>
+      <td>{{transaction.solde_to}}</td>
+    </tr>
+    </tbody>
+  </table>
+</div>
