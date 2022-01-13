@@ -1,0 +1,14 @@
+<div class=" board col-12">
+  <div class="title row">
+    <h1>Transaction</h1>
+  </div>
+  <br>
+  <div class="row">
+    <div class="tabl col-sm">
+      <app-in (transactionAddEvent)="newAddTransaction()"></app-in>
+    </div>
+    <div class="tabl col-sm">
+      <app-historique [newTransactionEvent]="newTransactionEvent" ></app-historique>
+    </div>
+  </div>
+</div>

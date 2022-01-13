@@ -1,5 +1,6 @@
 package com.example.paymybuddy.service;
 
+import com.example.paymybuddy.controller.dto.MoneyTransfertRequest;
 import com.example.paymybuddy.model.Transaction;
 import com.example.paymybuddy.model.User;
 import com.example.paymybuddy.repository.TransactionsRepository;
@@ -14,6 +15,8 @@ import java.util.NoSuchElementException;
 public class TransactionService {
     @Autowired
     private TransactionsRepository repository;
+    @Autowired
+    private UsersService usersService;
 
     public Transaction getTransactions(final Integer id){
         return repository.findById(id).orElseThrow(()->
