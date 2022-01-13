@@ -7,21 +7,4 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'PayMyBuddy';
-  isAuth = false;
-  isTransaction = false;
-
-  onAuth(){
-    if (this.isAuth == false){
-      this.isAuth = true;
-    } else {
-      this.isAuth = false;
-    }
-  }
-  onTransaction() {
-    if (this.isTransaction == false) {
-      this.isTransaction = true;
-    } else {
-      this.isTransaction = false;
-    }
-  }
 }
