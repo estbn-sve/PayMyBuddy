@@ -20,17 +20,17 @@ public class Transaction {
     @Column (name = "id")
     Integer id;
     @Column (name = "transaction_solde_to")
-    Double solde_to;
+    Double soldeTo;
     @Column (name = "transaction_solde_from")
-    Double solde_from;
+    Double soldeFrom;
     @Column (name = "transaction_solde_app")
-    Double solde_app;
+    Double soldeApp;
     @Column (name = "transaction_date")
     Date date;
     @OneToOne
     @JoinColumn(name = "user_to_id")
-    User id_user_to;
+    User userTo;
     @OneToOne
     @JoinColumn (name = "user_from_id")
-    User id_user_from;
+    User userFrom;
 }

@@ -19,8 +19,6 @@ public class TransactionController {
 
     @Autowired
     private TransactionService service;
-    @Autowired
-    private UsersService usersService;
 
     @GetMapping("")
     public Iterable<Transaction> getAllTransaction(){
@@ -39,7 +37,6 @@ public class TransactionController {
         }
     }
 
-
     @PostMapping("")
     public ResponseEntity<Transaction> addTransaction(@RequestBody Transaction transaction){
         log.info("POST /transaction/");
@@ -51,17 +48,4 @@ public class TransactionController {
             return  ResponseEntity.notFound().build();
         }
     }
-
-    //Avant modification
-//    @PostMapping("")
-//    public ResponseEntity<Transaction> addTransaction(@RequestBody Transaction transaction){
-//        log.info("POST /transaction/");
-//        try {
-//            return ResponseEntity.ok(service.addTransactions(transaction));
-//        } catch (NoSuchElementException e){
-//            //TODO revoir code erreur et méthode
-//            log.error("POST /transaction/" +" Error : "+e.getMessage());
-//            return  ResponseEntity.notFound().build();
-//        }
-//    }
 }

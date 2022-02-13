@@ -1,7 +1,7 @@
 <div class="tabl col-sm">
   <select class="form-select" aria-label="multiple select example"  #to (click)=onContact(to.value)>
     <option selected>Selectionner un contact</option>
-    <option   *ngFor="let contact of contacts" [value]="contact.id_user_second.id">{{contact.id_user_second.email}}</option>
+    <option   *ngFor="let contact of user.friendList" [value]="contact.id">{{contact.email}}</option>
   </select>
   <input #montant (keyup)="onKey(montant.valueAsNumber)" class="form-control" type="number" placeholder="Montant à envoyer" aria-label="default input example">
   <br>

@@ -7,31 +7,31 @@
     <div *ngIf="isCo==true">
       <form>
         <div class="form-group">
-          <label for="exampleInputEmail1">Email address</label>
-          <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+          <label for="exampleInputEmail1">User</label>
+          <input #userName (keyup)="onLogUserName(userName.value)" type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter user">
         </div>
         <br>
         <div class="form-group">
           <label for="exampleInputPassword1">Password</label>
-          <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+          <input #userPassword (keyup)="onLogUserPassword(userPassword.value)" type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
         </div>
         <br>
         <button type="submit" class="btn btn-primary" (click)="onCoSubmit()">Submit</button>
       </form>
     </div>
     <div *ngIf="isSign==true">
-      <form class="needs-validation" novalidate>
+      <form [formGroup]="sign" class="needs-validation" novalidate>
         <div class="form-row">
           <div class="col-md-4 mb-3">
             <label for="validationCustom01">First name</label>
-            <input type="text" class="form-control" id="validationCustom01" placeholder="First name" required>
+            <input formControlName="firstName" #firstName (keyup)="onSignFirstName(firstName.value)" type="text" class="form-control" id="validationCustom01" placeholder="First name" required>
             <div class="valid-feedback">
               Looks good!
             </div>
           </div>
           <div class="col-md-4 mb-3">
             <label for="validationCustom02">Last name</label>
-            <input type="text" class="form-control" id="validationCustom02" placeholder="Last name" required>
+            <input #lastName (keyup)="onSingLastName(lastName.value)" type="text" class="form-control" id="validationCustom02" placeholder="Last name" required>
             <div class="valid-feedback">
               Looks good!
             </div>
@@ -42,7 +42,7 @@
               <div class="input-group-prepend">
                 <span class="input-group-text" id="inputGroupPrepend">@</span>
               </div>
-              <input type="text" class="form-control" id="validationCustomUsername" placeholder="Username" aria-describedby="inputGroupPrepend" required>
+              <input #userName (keyup)="onSingUserName(userName.value)" type="text" class="form-control" id="validationCustomUsername" placeholder="Username" aria-describedby="inputGroupPrepend" required>
               <div class="invalid-feedback">
                 Please choose a username.
               </div>
@@ -52,23 +52,16 @@
         <div class="form-row">
           <div class="col-md-6 mb-3">
             <label for="validationCustom03">Email</label>
-            <input type="text" class="form-control" id="validationCustom03" placeholder="Email" required>
+            <input #email (keyup)="onSignEmail(email.value)" type="text" class="form-control" id="validationCustom03" placeholder="Email" required>
             <div class="invalid-feedback">
               Please provide a valid email.
             </div>
           </div>
           <div class="col-md-3 mb-3">
             <label for="validationCustom04">Password</label>
-            <input type="text" class="form-control" id="validationCustom04" placeholder="Password" required>
+            <input #password (keyup)="onSignPassword(password.value)" type="text" class="form-control" id="validationCustom04" placeholder="Password" required>
             <div class="invalid-feedback">
               Please provide a valid password.
-            </div>
-          </div>
-          <div class="col-md-3 mb-3">
-            <label for="validationCustom05">Password</label>
-            <input type="text" class="form-control" id="validationCustom05" placeholder="Password" required>
-            <div class="invalid-feedback">
-              Please provide a password.
             </div>
           </div>
         </div>

@@ -2,7 +2,7 @@ package com.example.paymybuddy;
 
 import com.example.paymybuddy.model.Transaction;
 import com.example.paymybuddy.model.User;
-import com.example.paymybuddy.model.UserContact;
+//import com.example.paymybuddy.model.UserContact;
 import com.example.paymybuddy.model.UserLogin;
 import com.example.paymybuddy.service.TransactionService;
 import com.example.paymybuddy.service.UserContactService;
@@ -54,27 +54,27 @@ public class IntegrationsTest {
 
         Transaction transaction = new Transaction();
         transaction.setDate(date);
-        transaction.setId_user_from(userFrom);
-        transaction.setId_user_to(userTo);
-        transaction.setSolde_app(0.50);
-        transaction.setSolde_from(10.00);
-        transaction.setSolde_to(9.50);
+        transaction.setUserFrom(userFrom);
+        transaction.setUserTo(userTo);
+        transaction.setSoldeApp(0.50);
+        transaction.setSoldeFrom(10.00);
+        transaction.setSoldeTo(9.50);
 
         Transaction transaction1 = transactionService.addTransactions(transaction);
         Transaction newTrasaction = transactionService.getTransactions(transaction1.getId());
     }
 
-    @Test
-    public void addUserContact(){
-        User userFirst = usersService.getUser(1);
-        User userSecond = usersService.getUser(2);
-
-        UserContact userContact = new UserContact();
-        userContact.setId_user_first(userFirst);
-        userContact.setId_user_second(userSecond);
-
-
-        UserContact userContact1 = userContactService.addUserContact(userContact);
-        UserContact newUserContact = userContactService.getUserContact(userContact1.getId());
-    }
+//    @Test
+//    public void addUserContact(){
+//        User userFirst = usersService.getUser(1);
+//        User userSecond = usersService.getUser(2);
+//
+//        UserContact userContact = new UserContact();
+//        userContact.setId_user_first(userFirst);
+//        userContact.setId_user_second(userSecond);
+//
+//
+//        UserContact userContact1 = userContactService.addUserContact(userContact);
+//        UserContact newUserContact = userContactService.getUserContact(userContact1.getId());
+//    }
 }

@@ -1,5 +1,4 @@
 export interface UserLogin{
-  id:number;
-  identifiant:String;
+  user:String;
   mdp:String;
 }

@@ -10,6 +10,9 @@ import { InComponent } from './composant/transaction/in/in.component';
 import { MenuComponent } from './composant/menu/menu.component';
 import {RouterModule} from "@angular/router";
 import { AuthComponent } from './composant/auth/auth.component';
+import {ReactiveFormsModule} from "@angular/forms";
+import { OutComponent } from './composant/transaction/out/out.component';
+import { ProfilComponent } from './composant/profil/profil.component';
 
 
 @NgModule({
@@ -19,15 +22,20 @@ import { AuthComponent } from './composant/auth/auth.component';
     HistoriqueComponent,
     InComponent,
     MenuComponent,
-    AuthComponent
+    AuthComponent,
+    OutComponent,
+    ProfilComponent
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
     FormsModule,
+    ReactiveFormsModule,
     RouterModule.forRoot([
       {path: 'transaction', component: TransactionComponent},
-      {path: 'auth', component: AuthComponent}
+      {path: 'auth', component: AuthComponent},
+      {path: 'out', component: OutComponent},
+      {path: 'profil', component: ProfilComponent}
     ], {useHash: true})
   ],
   providers: [],

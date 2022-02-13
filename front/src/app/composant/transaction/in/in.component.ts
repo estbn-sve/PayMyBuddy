@@ -3,6 +3,8 @@ import {Contact} from "../../../data/contact";
 import {ContactService} from "../../../service/contact/contact.service";
 import {TransactionService} from "../../../service/transaction/transaction.service";
 import {Subscription} from "rxjs";
+import {AuthService} from "../../../service/auth/auth.service";
+import {User} from "../../../data/user";
 
 
 @Component({
@@ -15,14 +17,18 @@ export class InComponent implements OnInit {
   @Output()transactionAddEvent: EventEmitter<void>= new EventEmitter<void>();
 
   contactSubscription : Subscription = new Subscription();
-  contacts : Contact[]  = []
+  user: User = this.authService.user;
+  contacts : Contact[]  = [];
   to:String="";
   montant:number= 0;
   event:any;
 
-  constructor(private contactService: ContactService, private transactionService:TransactionService) { }
+  constructor(private contactService: ContactService,
+              private transactionService:TransactionService,
+              private authService:AuthService) { }
 
   ngOnInit(): void {
+
     this.getContact()
   }
 
@@ -40,15 +46,15 @@ export class InComponent implements OnInit {
   }
 
   private getContact() {
-    this.contactService.getContactToBdd()
-      .subscribe(data => {
-          this.contacts=data
-          console.log("data reçus")
-        },error => {
-          alert("Erreur : " + error)
-          console.log("Erreur : " + error)
-        }
-      )
+    // this.contactService.getContactToBdd(this.authService.user.id)
+    //   .subscribe(data => {
+    //       this.contacts=data
+    //       console.log("data reçus")
+    //     },error => {
+    //       alert("Erreur : " + error)
+    //       console.log("Erreur : " + error)
+    //     }
+    //   )
   }
 
    private newTransaction(to:String, montant:number){

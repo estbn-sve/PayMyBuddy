@@ -2,6 +2,7 @@ import {Component, Input, OnInit} from '@angular/core';
 import {Transaction} from "../../../data/transaction";
 import {TransactionService} from "../../../service/transaction/transaction.service";
 import {Observable, Subscription} from "rxjs";
+import {AuthService} from "../../../service/auth/auth.service";
 
 
 @Component({
@@ -16,26 +17,14 @@ export class HistoriqueComponent implements OnInit {
 
   transactionSubscription: Subscription = new Subscription();
 
-  constructor(private transactionService: TransactionService) {
+  constructor(private transactionService: TransactionService,
+              private authService : AuthService) {
   }
 
   ngOnInit(): void {
     this.getTransaction();
     this.newTransactionEvent.subscribe(()=>this.getTransaction())
-   // this.getTransaction()
   }
-
-  // private getTransaction() {
-  //   this.transactionService.getTransactionsToBdd()
-  //     .subscribe(data => {
-  //         this.transactions=data
-  //         console.log("data reçus")
-  //       },error => {
-  //         alert("Erreur : " + error)
-  //         console.log("Erreur : " + error)
-  //       }
-  //     )
-  // }
 
   private getTransaction(){
     this.transactionSubscription = this.transactionService.transactionSubject.subscribe(
@@ -43,8 +32,7 @@ export class HistoriqueComponent implements OnInit {
         this.transactions = transactions;
       }
     );
-    //this.transactionService.emitTransactionSubject();
-    this.transactionService.getTransactionsToBdd()
+    this.transactionService.getTransactionsToBdd(this.authService.user.id)
   }
 
 }

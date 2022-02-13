@@ -14,8 +14,8 @@ export class ContactService {
 
   constructor(private httpClient: HttpClient) { }
 
-  getContactToBdd():Observable<Contact[]>{
-    console.log("GET Contact")
-    return this.httpClient.get<Contact[]>(`${this.baseUrl}`+this.request)
+  getContactToBdd(id:number):Observable<Contact[]>{
+    console.log("GET Contact");
+    return this.httpClient.get<Contact[]>(`${this.baseUrl}`+this.request+"/"+id);
   }
 }

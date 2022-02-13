@@ -1,5 +1,6 @@
 package com.example.paymybuddy.service;
 
+import com.example.paymybuddy.controller.dto.SignInRequest;
 import com.example.paymybuddy.model.User;
 import com.example.paymybuddy.repository.UsersRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -66,4 +67,5 @@ public class UsersService {
                     new NoSuchElementException("Error with putPerson "+id));
         }
     }
+
 }

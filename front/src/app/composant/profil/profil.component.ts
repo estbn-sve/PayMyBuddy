@@ -1,16 +1,16 @@
 import { Component, OnInit } from '@angular/core';
-import {Subject} from "rxjs";
 import {AuthService} from "../../service/auth/auth.service";
 import {Router} from "@angular/router";
+import {User} from "../../data/user";
 
 @Component({
-  selector: 'app-transaction',
-  templateUrl: './transaction.component.html',
-  styleUrls: ['./transaction.component.css']
+  selector: 'app-profil',
+  templateUrl: './profil.component.html',
+  styleUrls: ['./profil.component.css']
 })
-export class TransactionComponent implements OnInit {
+export class ProfilComponent implements OnInit {
 
-  newTransactionEvent : Subject<void> = new Subject<void>();
+  user:User= this.authService.user
 
   constructor(private authService : AuthService,
               private route : Router) {
@@ -21,10 +21,5 @@ export class TransactionComponent implements OnInit {
       this.route.navigate(["auth"])
     }
   }
-
-  newAddTransaction(){
-    this.newTransactionEvent.next();
-  }
-
 
 }

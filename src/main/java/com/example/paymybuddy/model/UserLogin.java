@@ -22,4 +22,6 @@ public class UserLogin {
     String identifiant;
     @Column(name = "user_login_mdp")
     String mdp;
+    @OneToOne(mappedBy = "userLogin")
+    User user;
 }

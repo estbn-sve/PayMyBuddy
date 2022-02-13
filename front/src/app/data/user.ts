@@ -1,4 +1,5 @@
 import {UserLogin} from "./userLogin";
+import {Contact} from "./contact";
 
 export interface User{
   id : number;
@@ -8,4 +9,5 @@ export interface User{
   solde:number;
   iban:String;
   login:UserLogin;
+  friendList:Contact[];
 }

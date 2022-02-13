@@ -1,0 +1,17 @@
+<div class="board col-12">
+  <div class="title">
+    <h1>Bonjour {{user.firstName}} {{user.lastName}} !</h1>
+    <br>
+    <h4>Solde actuel {{user.solde}} € !</h4>
+    <br>
+  </div>
+  <div>
+    <app-historique></app-historique>
+  </div>
+  <div class="container-profil">
+    <button class="btn btn-primary" routerLink="/transaction">Envoyer de l'argent</button>&nbsp;
+    &nbsp;<button class="btn btn-secondary" routerLink="/out">Ajouter de l'argent</button>
+  </div>
+</div>
+
+
