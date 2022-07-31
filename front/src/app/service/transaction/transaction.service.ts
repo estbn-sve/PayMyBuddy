@@ -33,7 +33,7 @@ export class TransactionService {
     this.httpClient.get<Transaction[]>(`${this.baseUrl}`+"/sendTransaction/"+id)
       .subscribe({
         next : response => {
-          console.log('GET ok '+response);
+          console.log('GET ok ',response);
           this.transaction = response;
           this.emitTransactionSubject();
         }, error : e => {
@@ -43,30 +43,26 @@ export class TransactionService {
   }
 
   newSendToBdd(idTo:String, soldeFrom:number, event:EventEmitter<void>){
-    //TODO a metre dans le back
-    this.soldeApp = soldeFrom*0.005;
-    this.soldeTo = soldeFrom-this.soldeApp;
     console.log("Post new Transaction")
     console.log(`${this.baseUrl}`+this.request+'/')
-    this.httpClient.post<Transaction>(`${this.baseUrl}`+'/newTransaction/', {
+    return this.httpClient.post<Transaction>(`${this.baseUrl}`+'/newTransaction/', {
       id_user_from: this.authService.user.id,
       id_user_to: idTo,
-      solde_from:soldeFrom,
-      solde_to:this.soldeTo,
-      solde_app:this.soldeApp
-    }).subscribe({
-      next: data => {
-      alert(data)
-        console.log("data envoyer : \n"+data)
-        event.emit();
-      },
-      error: error => {
-        alert("Erreur : " + error)
-        console.error("Erreur : " + error)
-      }}
-    )
-    //   .subscribe(data =>{
-    //   this.postId = data.id;
-    // })
+      solde_from:soldeFrom
+    });
+  }
+  sendOut(id:number, montant:number):Observable<any>{
+    console.log("Post new send Out")
+    return this.httpClient.post(`${this.baseUrl}`+'/sendOut/',{
+      id:id,
+      montant:montant
+    })
+  }
+  addOut(id:number, montant:number):Observable<any>{
+    console.log("Post new Add Out")
+    return this.httpClient.post(`${this.baseUrl}`+'/addOut/',{
+      id:id,
+      montant:montant
+    })
   }
 }

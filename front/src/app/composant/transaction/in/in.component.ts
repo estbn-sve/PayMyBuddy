@@ -28,8 +28,6 @@ export class InComponent implements OnInit {
               private authService:AuthService) { }
 
   ngOnInit(): void {
-
-    this.getContact()
   }
 
   onKey(value : number){
@@ -41,24 +39,20 @@ export class InComponent implements OnInit {
   }
 
   onSend(){
-    alert("Envoie de "+ this.montant + "€ à "+this.to+".")
   this.newTransaction(this.to,this.montant)
   }
 
-  private getContact() {
-    // this.contactService.getContactToBdd(this.authService.user.id)
-    //   .subscribe(data => {
-    //       this.contacts=data
-    //       console.log("data reçus")
-    //     },error => {
-    //       alert("Erreur : " + error)
-    //       console.log("Erreur : " + error)
-    //     }
-    //   )
-  }
 
    private newTransaction(to:String, montant:number){
-    this.transactionService.newSendToBdd(to, montant, this.transactionAddEvent)
+    this.transactionService.newSendToBdd(to, montant, this.transactionAddEvent).subscribe({
+      next: data => {
+        console.log("TRANSACTION OK : ", data)
+        this.transactionAddEvent.emit();
+      },
+      error: error => {
+        console.error("TRANSACTION Erreur : " + error)
+      }}
+    )
    }
 
 }

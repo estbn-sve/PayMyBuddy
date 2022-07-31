@@ -36,8 +36,7 @@ public class UserController {
     public ResponseEntity<User> getUser(@PathVariable("id") final Integer id){
         log.info("GET /user/"+id);
         try {
-            User u = service.getUser(id);
-            return ResponseEntity.ok(u);
+            return ResponseEntity.ok(service.getUser(id));
         } catch (NoSuchElementException e){
             log.error("GET /user/"+id+" Error : "+e.getMessage());
             return ResponseEntity.notFound().build();
@@ -69,7 +68,7 @@ public class UserController {
 
     @GetMapping("/contact/{id}")
     public List<UserContactDTO> contact (@PathVariable("id") final Integer id){
-        log.info(("GET /contact/"+id));
+        log.info(("GET /user/contact/"+id));
         return urlService.getUserContact(id);
     }
 }

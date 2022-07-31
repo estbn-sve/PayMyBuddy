@@ -43,7 +43,6 @@ public class TransactionController {
         try {
             return ResponseEntity.ok(service.addTransactions(transaction));
         } catch (NoSuchElementException e){
-            //TODO revoir code erreur et méthode
             log.error("POST /transaction/" +" Error : "+e.getMessage());
             return  ResponseEntity.notFound().build();
         }

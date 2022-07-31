@@ -11,6 +11,7 @@ import {UserSignIn} from "../../data/userSignIn";
 })
 export class AuthService {
 
+  // @ts-ignore
   user : User;
   private baseUrl = environment.baseUrl;
   private request = "/user";

@@ -1,25 +1,20 @@
 <div class ="col-sm">
-  <table class="table">
+  <table class="table ">
     <thead>
-    <tr>
-      <th scope="col">#</th>
+    <tr class="table-style">
       <th scope="col">Date</th>
-      <th scope="col">From</th>
-      <th scope="col">To</th>
-      <th scope="col">Montant envoyer</th>
-      <th scope="col">Commission</th>
-      <th scope="col">Montant reçu</th>
+      <th scope="col"></th>
+      <th scope="col"></th>
     </tr>
     </thead>
     <tbody>
-    <tr *ngFor="let transaction of transactions">
-      <th scope="row">{{transaction.id}}</th>
-      <td>{{transaction.date}}</td>
-      <td>{{transaction.id_user_from.email}}</td>
-      <td>{{transaction.id_user_to.email}}</td>
-      <td>{{transaction.solde_from}}</td>
-      <td>{{transaction.solde_app}}</td>
-      <td>{{transaction.solde_to}}</td>
+    <tr *ngFor="let transaction of transactions"
+        [ngStyle]="{'background-color': isCredit(transaction)? 'green':'red','color': isCredit(transaction)? 'black':'white'}">
+      <th>{{transaction.date | date:'dd-MM-yyyy HH:MM'}}</th>
+      <td [hidden]="!isCredit(transaction)">De {{transaction.id_user_from.email}}</td>
+      <td [hidden]="isCredit(transaction)">Pour {{transaction.id_user_to.email}}</td>
+      <td [hidden]="!isCredit(transaction)">+ {{transaction.solde_from}}€</td>
+      <td [hidden]="isCredit(transaction)">- {{transaction.solde_to}}€</td>
     </tr>
     </tbody>
   </table>

@@ -9,6 +9,5 @@ import java.util.Optional;
 
 @Repository
 public interface TransactionsRepository extends JpaRepository<Transaction, Integer> {
-    //TODO USER ET NON ID
     Iterable<Transaction> findAllByUserFromOrUserTo(User userFrom, User userTo);
 }

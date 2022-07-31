@@ -8,8 +8,6 @@ import java.util.Date;
 public class MoneyTransfertRequest {
     public String id_user_from;
     public String id_user_to;
-    public Double solde_app;
     public Double solde_from;
-    public Double solde_to;
 
 }

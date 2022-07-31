@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement>com.example.paymybuddy.model</OriginalElement>
+  <nodes>
+    <node x="7.5" y="432.0">com.example.paymybuddy.model.Transaction</node>
+    <node x="10.0" y="0.0">com.example.paymybuddy.model.UserLogin</node>
+    <node x="0.0" y="172.0">com.example.paymybuddy.model.User</node>
+    <node x="203.0" y="0.0">com.example.paymybuddy.model.AppSolde</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="com.example.paymybuddy.model.UserLogin" target="com.example.paymybuddy.model.User" relationship="DEPENDENCY">
+      <point x="34.5" y="61.0" />
+      <point x="113.5" y="147.0" />
+      <point x="118.5" y="147.0" />
+      <point x="39.5" y="-105.0" />
+    </edge>
+    <edge source="com.example.paymybuddy.model.User" target="com.example.paymybuddy.model.UserLogin" relationship="DEPENDENCY">
+      <point x="39.5" y="-105.0" />
+      <point x="118.5" y="147.0" />
+      <point x="113.5" y="147.0" />
+      <point x="34.5" y="61.0" />
+    </edge>
+    <edge source="com.example.paymybuddy.model.Transaction" target="com.example.paymybuddy.model.User" relationship="DEPENDENCY">
+      <point x="35.75" y="-105.0" />
+      <point x="114.75" y="407.0" />
+      <point x="118.5" y="407.0" />
+      <point x="39.5" y="105.0" />
+    </edge>
+    <edge source="com.example.paymybuddy.model.User" target="com.example.paymybuddy.model.UserLogin" relationship="TO_ONE">
+      <point x="-39.5" y="-105.0" />
+      <point x="39.5" y="147.0" />
+      <point x="44.5" y="147.0" />
+      <point x="-34.5" y="61.0" />
+    </edge>
+    <edge source="com.example.paymybuddy.model.Transaction" target="com.example.paymybuddy.model.User" relationship="TO_ONE">
+      <point x="-35.75" y="-105.0" />
+      <point x="43.25" y="407.0" />
+      <point x="39.5" y="407.0" />
+      <point x="-39.5" y="105.0" />
+    </edge>
+    <edge source="com.example.paymybuddy.model.UserLogin" target="com.example.paymybuddy.model.User" relationship="TO_ONE">
+      <point x="-34.5" y="61.0" />
+      <point x="44.5" y="147.0" />
+      <point x="39.5" y="147.0" />
+      <point x="-39.5" y="-105.0" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic" zoom="1.0" showDependencies="true" x="160.5" y="321.0" />
+  <SelectedNodes>
+    <node>com.example.paymybuddy.model.AppSolde</node>
+  </SelectedNodes>
+  <Categories>
+    <Category>Properties</Category>
+  </Categories>
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+

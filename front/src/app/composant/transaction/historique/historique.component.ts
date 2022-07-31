@@ -13,6 +13,8 @@ import {AuthService} from "../../../service/auth/auth.service";
 export class HistoriqueComponent implements OnInit {
   @Input() newTransactionEvent: Observable<void> = new Observable<void>();
 
+  user = this.authService.user;
+
   transactions : Transaction[] = []
 
   transactionSubscription: Subscription = new Subscription();
@@ -32,7 +34,17 @@ export class HistoriqueComponent implements OnInit {
         this.transactions = transactions;
       }
     );
-    this.transactionService.getTransactionsToBdd(this.authService.user.id)
+    this.transactionService.getTransactionsToBdd(this.user.id)
+  }
+
+  isCredit(transaction:Transaction):Boolean{
+    if(transaction.id_user_from.id == null){
+      return false;
+    } else if (transaction.id_user_to.id == null){
+      return true;
+    }else {
+      return transaction.id_user_from.id != this.user.id;
+    }
   }
 
 }

@@ -13,6 +13,10 @@ import { AuthComponent } from './composant/auth/auth.component';
 import {ReactiveFormsModule} from "@angular/forms";
 import { OutComponent } from './composant/transaction/out/out.component';
 import { ProfilComponent } from './composant/profil/profil.component';
+import {MatNativeDateModule} from "@angular/material/core";
+import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
+import { Placement as PopperPlacement, Options } from '@popperjs/core';
+
 
 
 @NgModule({
@@ -27,10 +31,12 @@ import { ProfilComponent } from './composant/profil/profil.component';
     ProfilComponent
   ],
   imports: [
+    BrowserAnimationsModule,
     BrowserModule,
-    HttpClientModule,
     FormsModule,
+    MatNativeDateModule,
     ReactiveFormsModule,
+    HttpClientModule,
     RouterModule.forRoot([
       {path: 'transaction', component: TransactionComponent},
       {path: 'auth', component: AuthComponent},

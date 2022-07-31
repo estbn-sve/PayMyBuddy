@@ -11,6 +11,7 @@ public class SendTransaction {
     Double solde_from;
     Double solde_app;
     Date date;
-    Integer id_user_to;
-    Integer id_user_from;
+    UserDTO id_user_to;
+    UserDTO id_user_from;
+    String iban;
 }

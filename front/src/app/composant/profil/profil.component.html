@@ -1,4 +1,32 @@
 <div class="board col-12">
+  <ng-template #contentContact let-modal>
+    <div class="modal-header">
+      <h4 class="modal-title" id="modal-contact">Ajout d'un contact</h4>
+      <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+    </div>
+    <div class="modal-body">
+      <input #email (keyup)="onKeyEmail(email.value)" class="form-control" type="string" placeholder="email du contact" aria-label="default input example">
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-outline-dark"  (click)="modal.close(onClickAddContact())">Ajouter</button>
+    </div>
+  </ng-template>
+
+  <ng-template #contentTransactionOut let-modal>
+    <div class="modal-header">
+      <h4 class="modal-title" id="modal-transaction-out">Ajout où Envoi d'argent sur compte bancaire</h4>
+      <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+    </div>
+    <div class="modal-body">
+      <input #montant (keyup)="onKeyMontant(montant.valueAsNumber)" class="form-control" type="number" placeholder="Montant" aria-label="default input example">
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-outline-dark"  (click)="modal.close(onClickAddMoney())">Ajouter</button>
+      <button type="button" class="btn btn-outline-dark"  (click)="modal.close(onClickSendMoney())">Envoyer</button>
+    </div>
+  </ng-template>
+
+
   <div class="title">
     <h1>Bonjour {{user.firstName}} {{user.lastName}} !</h1>
     <br>
@@ -9,8 +37,12 @@
     <app-historique></app-historique>
   </div>
   <div class="container-profil">
-    <button class="btn btn-primary" routerLink="/transaction">Envoyer de l'argent</button>&nbsp;
-    &nbsp;<button class="btn btn-secondary" routerLink="/out">Ajouter de l'argent</button>
+    <button class="btn btn-success" (click)="contactModal(contentContact)">Ajouter un Contact</button>&nbsp;
+    &nbsp;<button class="btn btn-primary" routerLink="/transaction">Envoyer de l'argent</button>
+  </div>
+  <br>
+  <div class="container-profil">
+    <button class="btn btn-secondary" (click)="contactModal(contentTransactionOut)">Ajouter/Envoyer de l'argent sur un compte Bancaire</button>
   </div>
 </div>
 

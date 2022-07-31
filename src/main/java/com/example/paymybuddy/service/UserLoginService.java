@@ -54,7 +54,7 @@ public class UserLoginService {
 
     public UserLogin addUser(UserLogin userLogin){
         Integer id = userLogin.getId();
-        if(id == null || !repository.existsById(id)){
+        if(/*id == null || */!repository.existsById(id)){
             return repository.save(userLogin);
         } else {
             return repository.findById(id).orElseThrow(()->

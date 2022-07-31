@@ -1,9 +1,8 @@
 package com.example.paymybuddy.controller.url;
 
-import com.example.paymybuddy.controller.dto.ContactUserForUser;
-import com.example.paymybuddy.controller.dto.MoneyTransfertRequest;
-import com.example.paymybuddy.controller.dto.SendTransaction;
+import com.example.paymybuddy.controller.dto.*;
 import com.example.paymybuddy.model.Transaction;
+import com.example.paymybuddy.model.User;
 import com.example.paymybuddy.service.url.UrlService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,10 +19,11 @@ public class UrlController {
     private UrlService service;
 
     @PostMapping("/newTransaction")
-    public ResponseEntity<Transaction> newTransactionController(@RequestBody MoneyTransfertRequest moneyTransfertRequest){
+    public ResponseEntity<SendTransaction> newTransactionController(@RequestBody MoneyTransfertRequest moneyTransfertRequest){
         log.info("POST /newTransaction/");
         return ResponseEntity.ok(service.newTransactionService(moneyTransfertRequest));
     }
+
 
     @GetMapping("/sendTransaction/{id}")
     public Iterable<SendTransaction> getSendTransaction(@PathVariable("id") final Integer id){
@@ -31,10 +31,27 @@ public class UrlController {
         return service.getUserTransaction(id);
     }
 
-//    @GetMapping("/UserContact/{id}")
-//    public Iterable<ContactUserForUser> getUserContact(@PathVariable("id") final Integer id){
-//        log.info("Start GET /UserContact/"+id);
-//        return service.getUserContact(id);
-//    }
+    @GetMapping("/userEmail/{email}")
+    public UserDTO getUserByEmail(@PathVariable("email")final String email) {
+        log.info("Start GET /user/" + email);
+        return service.getUserByEmail(email);
+    }
 
+    @PostMapping("/addContact")
+    public ResponseEntity<User> addUserContact(@RequestBody ContactRequest contactRequest){
+        log.info("POST /addContact/");
+        return ResponseEntity.ok(service.addContact(contactRequest));
+    }
+
+    @PostMapping("/addOut")
+    public ResponseEntity<Transaction> addOut(@RequestBody OutRequest outRequest){
+        log.info("POST /addOut");
+        return ResponseEntity.ok(service.addOut(outRequest));
+    }
+
+    @PostMapping("/sendOut")
+    public ResponseEntity<Transaction> sendOut(@RequestBody OutRequest outRequest){
+        log.info("POST /sendOut");
+        return ResponseEntity.ok(service.sendOut(outRequest));
+    }
 }

@@ -15,8 +15,7 @@ import java.util.Date;
 @AllArgsConstructor
 @Table (name = "transaction")
 public class Transaction {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column (name = "id")
     Integer id;
     @Column (name = "transaction_solde_to")
@@ -33,4 +32,6 @@ public class Transaction {
     @OneToOne
     @JoinColumn (name = "user_from_id")
     User userFrom;
+    @Column (name = "iban")
+    String iban;
 }
