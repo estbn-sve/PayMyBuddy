@@ -64,6 +64,7 @@ public class UserLoginService {
 
     public UserLogin putUserLogin (UserLogin currentUserLogin,final Integer id){
         if(repository.existsById(id)){
+            repository.save(currentUserLogin);
             return currentUserLogin;
         } else {
             return repository.findById(id).orElseThrow(()->

@@ -38,6 +38,7 @@ public class UsersService {
 
     public User putUser (User currentUser , final Integer id){
         if(repository.existsById(id)){
+            repository.save(currentUser);
             return currentUser;
         } else {
             return repository.findById(id).orElseThrow(()->
