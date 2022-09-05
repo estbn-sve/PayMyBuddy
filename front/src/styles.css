@@ -1,0 +1,12 @@
+/* You can add global styles to this file, and also import other style files */
+.board {
+  padding: 50px;
+  padding-bottom: 0px;
+}
+.tabl {
+  border: #888888;
+  border-radius: 5px;
+}
+.title{
+  text-align: center;
+}

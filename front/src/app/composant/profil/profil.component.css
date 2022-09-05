@@ -1,0 +1,11 @@
+.container-profil{
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.profil{
+  display: inline-grid;
+  margin-right: 10px;
+}

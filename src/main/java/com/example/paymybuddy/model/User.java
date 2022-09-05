@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Data
 @Builder
@@ -31,5 +32,12 @@ public class User {
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "user_login_id")
     UserLogin userLogin;
+    @ManyToMany
+    @JoinTable(
+            name = "user_contact",
+            joinColumns = @JoinColumn(name = "user_id_first"),
+            inverseJoinColumns = @JoinColumn(name = "user_id_second")
+    )
+    List<User> friendList;
 
 }
