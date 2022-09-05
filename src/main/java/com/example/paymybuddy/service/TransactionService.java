@@ -36,6 +36,7 @@ public class TransactionService {
 
     public Transaction putTransactions (Transaction currentTransaction , final Integer id){
         if(repository.existsById(id)){
+            repository.save(currentTransaction);
             return currentTransaction;
         } else {
             return repository.findById(id).orElseThrow(()->
