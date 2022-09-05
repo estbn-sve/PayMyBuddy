@@ -1,0 +1,21 @@
+<div class ="col-sm">
+  <table class="table ">
+    <thead>
+    <tr class="table-style">
+      <th scope="col">Date</th>
+      <th scope="col"></th>
+      <th scope="col"></th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let transaction of transactions"
+        [ngStyle]="{'background-color': isCredit(transaction)? 'green':'red','color': isCredit(transaction)? 'black':'white'}">
+      <th>{{transaction.date | date:'dd-MM-yyyy HH:MM'}}</th>
+      <td [hidden]="!isCredit(transaction)">De {{transaction.id_user_from.email}}</td>
+      <td [hidden]="isCredit(transaction)">Pour {{transaction.id_user_to.email}}</td>
+      <td [hidden]="!isCredit(transaction)">+ {{transaction.solde_from}}€</td>
+      <td [hidden]="isCredit(transaction)">- {{transaction.solde_to}}€</td>
+    </tr>
+    </tbody>
+  </table>
+</div>

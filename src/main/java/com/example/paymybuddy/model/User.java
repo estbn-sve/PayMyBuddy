@@ -6,21 +6,22 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Data
 @Builder
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "users")
-public class Users {
+@Table(name = "user")
+public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "idUsers")
+    @Column(name = "id")
     Integer id;
-    @Column(name = "user_lastName")
+    @Column(name = "user_last_name")
     String lastName;
-    @Column(name = "user_firstName")
+    @Column(name = "user_first_name")
     String firstName;
     @Column(name = "user_email")
     String email;
@@ -28,8 +29,15 @@ public class Users {
     Double solde;
     @Column(name = "user_iban")
     String iban;
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "user_login_id")
     UserLogin userLogin;
+    @ManyToMany
+    @JoinTable(
+            name = "user_contact",
+            joinColumns = @JoinColumn(name = "user_id_first"),
+            inverseJoinColumns = @JoinColumn(name = "user_id_second")
+    )
+    List<User> friendList;
 
 }

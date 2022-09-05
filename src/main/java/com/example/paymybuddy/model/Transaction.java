@@ -14,23 +14,24 @@ import java.util.Date;
 @NoArgsConstructor
 @AllArgsConstructor
 @Table (name = "transaction")
-public class Transactions {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column (name = "idTransaction")
+public class Transaction {
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column (name = "id")
     Integer id;
     @Column (name = "transaction_solde_to")
-    Double solde_to;
+    Double soldeTo;
     @Column (name = "transaction_solde_from")
-    Double solde_from;
+    Double soldeFrom;
     @Column (name = "transaction_solde_app")
-    Double solde_app;
+    Double soldeApp;
     @Column (name = "transaction_date")
     Date date;
     @OneToOne
-    @JoinColumn(name = "users_to_id")
-    Users id_user_to;
+    @JoinColumn(name = "user_to_id")
+    User userTo;
     @OneToOne
-    @JoinColumn (name = "users_from_id")
-    Users id_user_from;
+    @JoinColumn (name = "user_from_id")
+    User userFrom;
+    @Column (name = "iban")
+    String iban;
 }

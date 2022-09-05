@@ -12,12 +12,12 @@ import javax.persistence.*;
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "App_Solde")
+@Table(name = "app_solde")
 public class AppSolde {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "idApp_Solde")
+    @Column(name = "id")
     Integer id;
-    @Column(name = "app_Solde")
+    @Column(name = "app_solde")
     Double solde;
 }

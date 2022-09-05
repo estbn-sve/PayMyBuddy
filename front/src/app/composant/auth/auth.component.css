@@ -1,0 +1,11 @@
+.auth-div{
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.auth{
+  display: inline-grid;
+  margin-right: 10px;
+}
