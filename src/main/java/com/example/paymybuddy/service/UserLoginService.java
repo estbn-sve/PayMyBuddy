@@ -54,7 +54,7 @@ public class UserLoginService {
 
     public UserLogin addUser(UserLogin userLogin){
         Integer id = userLogin.getId();
-        if(/*id == null || */!repository.existsById(id)){
+        if(!repository.existsById(id)){
             return repository.save(userLogin);
         } else {
             return repository.findById(id).orElseThrow(()->
@@ -63,21 +63,11 @@ public class UserLoginService {
     }
 
     public UserLogin putUserLogin (UserLogin currentUserLogin,final Integer id){
-        if (repository.existsById(id)){
-            UserLogin userLogin = currentUserLogin;
-            currentUserLogin = repository.findById(id).get();
-            String identifiant = userLogin.getIdentifiant();
-            if (identifiant != null) {
-                currentUserLogin.setIdentifiant(identifiant);
-            }
-            String mdp = userLogin.getMdp();
-            if (mdp !=null){
-                currentUserLogin.setMdp(mdp);
-            }
+        if(repository.existsById(id)){
             return currentUserLogin;
         } else {
             return repository.findById(id).orElseThrow(()->
-                    new NoSuchElementException("Error with putPerson "+id));
+                    new NoSuchElementException("Error with putTransaction "+id));
         }
     }
 }

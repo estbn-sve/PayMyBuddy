@@ -25,7 +25,6 @@ export class TransactionComponent implements OnInit {
   }
 
   newAddTransaction(){
-    // renvoyer un appel pour maj les infos
     console.log("new Add transaction componennt")
     this.newTransactionEvent.next();
   }

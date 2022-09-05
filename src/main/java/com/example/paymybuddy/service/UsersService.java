@@ -1,6 +1,5 @@
 package com.example.paymybuddy.service;
 
-import com.example.paymybuddy.controller.dto.SignInRequest;
 import com.example.paymybuddy.model.User;
 import com.example.paymybuddy.repository.UsersRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,7 +28,7 @@ public class UsersService {
 
     public User addUser(User user){
         Integer id = user.getId();
-        if(/*id == null || */!repository.existsById(id)){
+        if(!repository.existsById(id)){
             return repository.save(user);
         } else {
             return repository.findById(id).orElseThrow(()->
@@ -38,29 +37,7 @@ public class UsersService {
     }
 
     public User putUser (User currentUser , final Integer id){
-        if (repository.existsById(id)){
-            User user = currentUser;
-            currentUser = repository.findById(id).get();
-            String firstName = user.getFirstName();
-            if (firstName != null) {
-                currentUser.setFirstName(firstName);
-            }
-            String lastName = user.getLastName();
-            if (lastName !=null){
-                currentUser.setLastName(lastName);
-            }
-            Double solde = user.getSolde();
-            if(solde != null){
-                currentUser.setSolde(solde);
-            }
-            String email = user.getEmail();
-            if(email != null){
-                currentUser.setEmail(email);
-            }
-            String iban = user.getIban();
-            if(iban != null){
-                currentUser.setIban(iban);
-            }
+        if(repository.existsById(id)){
             return currentUser;
         } else {
             return repository.findById(id).orElseThrow(()->

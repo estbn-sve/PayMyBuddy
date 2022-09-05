@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import {User} from "../../data/user"
 import {AuthService} from "../../service/auth/auth.service";
 import {FormControl, FormGroup} from "@angular/forms";
-import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-auth',

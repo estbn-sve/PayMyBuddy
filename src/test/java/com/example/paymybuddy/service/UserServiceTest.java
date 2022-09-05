@@ -72,7 +72,7 @@ public class UserServiceTest {
     public void putUser_Test_shouldReturnOk(){
         User user = new User();
         when(repository.existsById(any())).thenReturn(true);
-        when(repository.findById(any())).thenReturn(Optional.of(user));
+//        when(repository.findById(any())).thenReturn(Optional.of(user));
         assertEquals(service.putUser(user,1),user);
     }
 

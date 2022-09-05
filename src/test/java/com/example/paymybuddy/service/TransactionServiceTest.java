@@ -47,7 +47,8 @@ public class TransactionServiceTest {
     @Test
     public void putTransaction_Test_ShouldReturnOk(){
         Transaction transaction = new Transaction();
-        when(repository.findById(any())).thenReturn(Optional.of(transaction));
+        when(repository.existsById(any())).thenReturn(true);
+//        when(repository.findById(any())).thenReturn(Optional.of(transaction));
         assertEquals(service.putTransactions(transaction,1),transaction);
     }
 

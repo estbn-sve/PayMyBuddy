@@ -1,10 +1,8 @@
 package com.example.paymybuddy.controller.dto;
 
-import com.example.paymybuddy.model.User;
-import com.example.paymybuddy.model.UserLogin;
+
 import lombok.Data;
 
-import javax.persistence.*;
 import java.util.List;
 
 @Data

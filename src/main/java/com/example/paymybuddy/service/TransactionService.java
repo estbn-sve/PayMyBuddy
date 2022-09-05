@@ -26,7 +26,7 @@ public class TransactionService {
 
     public Transaction addTransactions(Transaction transaction){
         Integer id = transaction.getId();
-        if(id == null || !repository.existsById(id)){
+        if(!repository.existsById(id)){
             return repository.save(transaction);
         } else {
             return repository.findById(id).orElseThrow(()->
@@ -35,33 +35,12 @@ public class TransactionService {
     }
 
     public Transaction putTransactions (Transaction currentTransaction , final Integer id){
-//        if (repository.existsById(id)){
-            Transaction transaction = currentTransaction;
-            //currentTransaction = repository.findById(id).get();
-            currentTransaction = repository.findById(id).orElseThrow(()->
-                    new NoSuchElementException("Error with putPerson "+id));
-
-            Date date = transaction.getDate();
-            if (date != null) {
-                currentTransaction.setDate(date);
-            }
-            User id_users_from = transaction.getUserFrom();
-            if (id_users_from !=null){
-                currentTransaction.setUserFrom(id_users_from);
-            }
-            Double solde_from = transaction.getSoldeFrom();
-            if(solde_from != null){
-                currentTransaction.setSoldeFrom(solde_from);
-            }
-            Double solde_to = transaction.getSoldeTo();
-            if(solde_to != null){
-                currentTransaction.setSoldeTo(solde_to);
-            }
-            Double solde_app = transaction.getSoldeApp();
-            if(solde_app != null){
-                currentTransaction.setSoldeApp(solde_app);
-            }
+        if(repository.existsById(id)){
             return currentTransaction;
+        } else {
+            return repository.findById(id).orElseThrow(()->
+                    new NoSuchElementException("Error with putTransaction "+id));
+        }
     }
 
 

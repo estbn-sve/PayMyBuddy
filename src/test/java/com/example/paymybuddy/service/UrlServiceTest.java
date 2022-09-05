@@ -39,14 +39,12 @@ public class UrlServiceTest {
 
     @Test
     public void newTransactionService_Test_ShouldReturnOk(){
-        //GIVEN Une nouvelle transaction est enregistrée de 10 entre l'utilisateur 1 et l'utilisateur 2
-        // créer une requete de transaction
+
         MoneyTransfertRequest moneyTransfertRequest = new MoneyTransfertRequest();
         moneyTransfertRequest.setId_user_from("2");
         moneyTransfertRequest.setId_user_to("1");
         moneyTransfertRequest.setSolde_from(10.00);
 
-        // créer deux users
         User userTo = new User();
         userTo.setId(1);
         userTo.setSolde(10.00);
@@ -55,39 +53,29 @@ public class UrlServiceTest {
         userFrom.setId(2);
         userFrom.setSolde(100.00);
 
-        // créer les mocks : 2 get users, addSolde, addTransaction
         when(usersService.getUser(2)).thenReturn(userFrom);
         when(usersService.getUser(1)).thenReturn(userTo);
         when(appSoldeService.addCommision(any())).thenReturn(null);
         when(transactionService.addTransactions(any())).thenReturn(null);
 
-
-        //WHEN Effectue une transaction (modification du solde des deux users + enregistrement d'une nouvelle transaction)
-        // et renvoie un résumé de la transaction sous forme de DTO
         SendTransaction sendTransaction = service.newTransactionService(moneyTransfertRequest);
 
-
-        //THEN Que la transaction a bien été faite et que le DTO contient les bonnes infos
         verify(appSoldeService, times(1)).addCommision(0.05);
         verify(transactionService, times(1)).addTransactions(any());
         assertEquals(sendTransaction.getId_user_from().getId(), 2);
         assertEquals(sendTransaction.getId_user_to().getId(), 1);
-        assertEquals(sendTransaction.getSolde_from(), 10.00);
+        assertEquals(sendTransaction.getSolde_from(), 9.95);
         assertEquals(sendTransaction.getSolde_app(), 0.05);
-        assertEquals(sendTransaction.getSolde_to(), 9.95);
+        assertEquals(sendTransaction.getSolde_to(), 10.00);
     }
 
     @Test
     public void getUserTransaction_Test_ShouldReturnOk(){
-        //TODO A revoir
-        //GIVEN récupérer deux transaction de userFrom
-        //Crée les deux utilisateurs
         User userfrom = new User();
         userfrom.setId(1);
         User userTo = new User();
         userTo.setId(2);
 
-        //Crée les deux transaction
         Date date = new Date();
 
         Transaction transaction1 = new Transaction();
@@ -97,23 +85,19 @@ public class UrlServiceTest {
         transaction1.setUserTo(userTo);
         transaction1.setUserFrom(userfrom);
 
-        //Crée la liste de transaction
         Iterable<Transaction> transactions = List.of(transaction1);
-        //WHEN
         when(usersService.getUser(any())).thenReturn(userfrom);
         when(transactionsRepository.findAllByUserFromOrUserTo(userfrom, userfrom)).thenReturn(transactions);
         Iterable<SendTransaction> sendTransactionArrayList = service.getUserTransaction(1);
         List<SendTransaction> transactionList = new ArrayList<>();
         sendTransactionArrayList.forEach(transactionList::add);
 
-        //THEN
         assertEquals(10.00,transactionList.get(0).getSolde_from());
     }
 
 
     @Test
     public void getUserContact_Test_ShouldReturnOk(){
-        // GIVEN
         User user = new User();
 
         User userContact = new User();
@@ -131,11 +115,9 @@ public class UrlServiceTest {
         List<User> lu = Arrays.asList(userContact,userContact1);
         user.setFriendList(lu);
 
-        // WHEN
         when(usersRepository.getById(any())).thenReturn(user);
         List<UserContactDTO> userContactDTOList = service.getUserContact(1);
 
-        // THEN
         assertEquals(userContactDTOList.get(0).getId(), 1);
         assertEquals(userContactDTOList.get(0).getEmail(),"david.tom@mail.fr");
         assertEquals(userContactDTOList.get(0).getLastName(),"tom");

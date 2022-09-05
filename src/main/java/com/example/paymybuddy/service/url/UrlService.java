@@ -43,12 +43,13 @@ public class UrlService {
 
 
         Double soldeApp = moneyTransfertRequest.solde_from*0.005;
-        Double soldeTo = moneyTransfertRequest.solde_from - soldeApp;
+        Double soldeFrom = moneyTransfertRequest.solde_from - soldeApp;
+        Double soldeTo = moneyTransfertRequest.solde_from;
         appSoldeService.addCommision(soldeApp);
 
         transaction.setSoldeTo(soldeTo);
         transaction.setSoldeApp(soldeApp);
-        transaction.setSoldeFrom(soldeTo);
+        transaction.setSoldeFrom(soldeFrom);
         transaction.setUserFrom(userFrom);
         transaction.setUserTo(userTo);
 

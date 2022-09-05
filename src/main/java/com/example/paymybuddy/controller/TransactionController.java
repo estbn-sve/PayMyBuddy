@@ -1,9 +1,7 @@
 package com.example.paymybuddy.controller;
 
-import com.example.paymybuddy.controller.dto.MoneyTransfertRequest;
 import com.example.paymybuddy.model.Transaction;
 import com.example.paymybuddy.service.TransactionService;
-import com.example.paymybuddy.service.UsersService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
