@@ -52,12 +52,6 @@ public class UrlService {
         System.out.println("End soldeApp");
 
         System.out.println("start transaction");
-        for(int i = 1 ; i<=999 ; i++){
-            if(!transactionsRepository.existsById(i)){
-                transaction.setId(i);
-                break;
-            }
-        }
         transaction.setSoldeTo(soldeTo);
         transaction.setSoldeApp(soldeApp);
         transaction.setSoldeFrom(soldeFrom);
@@ -144,12 +138,6 @@ public class UrlService {
         User user = new User();
         userLogin.setIdentifiant(signInRequest.getUser());
         userLogin.setMdp(signInRequest.getMdp());
-        for(int i = 1 ; i<=99 ; i++){
-           if(!usersRepository.existsById(i)){
-               user.setId(i);
-               break;
-           }
-        }
         user.setFirstName(signInRequest.getFirstName());
         user.setLastName(signInRequest.getLastName());
         user.setEmail(signInRequest.getEmail());
@@ -227,12 +215,6 @@ public class UrlService {
         user.setSolde(user.getSolde()- outRequest.getMontant());
 
         Transaction transaction = new Transaction();
-        for(int i = 1 ; i<=999 ; i++){
-            if(!transactionsRepository.existsById(i)){
-                transaction.setId(i);
-                break;
-            }
-        }
         transaction.setDate(date);
         transaction.setIban(user.getIban());
         transaction.setUserFrom(user);
