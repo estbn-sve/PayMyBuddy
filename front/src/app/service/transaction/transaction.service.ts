@@ -3,7 +3,6 @@ import {HttpClient} from "@angular/common/http";
 import {environment} from "../../../environments/environment";
 import {Observable, Subject} from "rxjs";
 import {Transaction} from "../../data/transaction";
-import {User} from "../../data/user";
 import {AuthService} from "../auth/auth.service";
 
 @Injectable({
@@ -47,7 +46,8 @@ export class TransactionService {
     console.log(`${this.baseUrl}`+this.request+'/')
     return this.httpClient.post<Transaction>(`${this.baseUrl}`+'/newTransaction/', {
       id_user_from: this.authService.user.id,
-      id_user_to: idTo,
+      // @ts-ignore
+      id_user_to: parseFloat(idTo),
       solde_from:soldeFrom
     });
   }

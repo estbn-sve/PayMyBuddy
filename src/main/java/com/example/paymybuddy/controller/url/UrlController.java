@@ -18,7 +18,7 @@ public class UrlController {
 
     @PostMapping("/newTransaction")
     public ResponseEntity<SendTransaction> newTransactionController(@RequestBody MoneyTransfertRequest moneyTransfertRequest){
-        log.info("POST /newTransaction/");
+        log.info("POST /newTransaction/" + moneyTransfertRequest);
         return ResponseEntity.ok(service.newTransactionService(moneyTransfertRequest));
     }
 
@@ -43,13 +43,13 @@ public class UrlController {
 
     @PostMapping("/addOut")
     public ResponseEntity<Transaction> addOut(@RequestBody OutRequest outRequest){
-        log.info("POST /addOut");
+        log.info("POST /addOut/"+outRequest);
         return ResponseEntity.ok(service.addOut(outRequest));
     }
 
     @PostMapping("/sendOut")
     public ResponseEntity<Transaction> sendOut(@RequestBody OutRequest outRequest){
-        log.info("POST /sendOut");
+        log.info("POST /sendOut/"+outRequest);
         return ResponseEntity.ok(service.sendOut(outRequest));
     }
 }
