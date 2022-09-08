@@ -28,7 +28,7 @@ public class UsersService {
 
     public User addUser(User user){
         Integer id = user.getId();
-        if(!repository.existsById(id)){
+        if(id == null || !repository.existsById(id)){
             return repository.save(user);
         } else {
             return repository.findById(id).orElseThrow(()->

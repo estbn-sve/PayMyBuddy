@@ -26,7 +26,7 @@ public class TransactionService {
 
     public Transaction addTransactions(Transaction transaction){
         Integer id = transaction.getId();
-        if(!repository.existsById(id)){
+        if(id == null|| !repository.existsById(id) ){
             return repository.save(transaction);
         } else {
             return repository.findById(id).orElseThrow(()->
