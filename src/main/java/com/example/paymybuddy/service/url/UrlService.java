@@ -38,40 +38,58 @@ public class UrlService {
         Transaction transaction = new Transaction();
         SendTransaction sendTransaction = new SendTransaction();
         transaction.setDate(date);
-        User userTo = usersService.getUser(Integer.valueOf(moneyTransfertRequest.id_user_to));
-        User userFrom = usersService.getUser(Integer.valueOf(moneyTransfertRequest.id_user_from));
 
+        System.out.println("start User");
+        User userTo = usersService.getUser(Integer.valueOf(moneyTransfertRequest.getId_user_to()));
+        User userFrom = usersService.getUser(Integer.valueOf(moneyTransfertRequest.getId_user_from()));
+        System.out.println("End User");
 
-        Double soldeApp = moneyTransfertRequest.solde_from*0.005;
-        Double soldeFrom = moneyTransfertRequest.solde_from - soldeApp;
-        Double soldeTo = moneyTransfertRequest.solde_from;
+        System.out.println("start SoldeApp");
+        Double soldeApp = moneyTransfertRequest.getSolde_from()*0.005;
+        Double soldeFrom = moneyTransfertRequest.getSolde_from() - soldeApp;
+        Double soldeTo = moneyTransfertRequest.getSolde_from();
         appSoldeService.addCommision(soldeApp);
+        System.out.println("End soldeApp");
 
+        System.out.println("start transaction");
+        for(int i = 1 ; i<=999 ; i++){
+            if(!transactionsRepository.existsById(i)){
+                transaction.setId(i);
+                break;
+            }
+        }
         transaction.setSoldeTo(soldeTo);
         transaction.setSoldeApp(soldeApp);
         transaction.setSoldeFrom(soldeFrom);
         transaction.setUserFrom(userFrom);
         transaction.setUserTo(userTo);
+        System.out.println("end Transaction");
 
+        System.out.println("start UserDTO");
         UserDTO userDTOFrom = new UserDTO();
         UserDTO userDTOTo = new UserDTO();
-
+        System.out.println("start userDTO FROM");
         userDTOFrom.setId(transaction.getUserFrom().getId());
         userDTOFrom.setEmail(transaction.getUserFrom().getEmail());
         userDTOFrom.setFirstName(transaction.getUserFrom().getFirstName());
         userDTOFrom.setLastName(transaction.getUserFrom().getLastName());
+        System.out.println("end userDTO FROM");
 
+        System.out.println("start userDTO TO");
         userDTOTo.setId(transaction.getUserTo().getId());
         userDTOTo.setEmail(transaction.getUserTo().getEmail());
         userDTOTo.setFirstName(transaction.getUserTo().getFirstName());
         userDTOTo.setLastName(transaction.getUserTo().getLastName());
+        System.out.println("end userDTO TO");
 
+        System.out.println("start SOLDE USER");
         Double soldeUserTo = userTo.getSolde();
         Double soldeUserFrom = userFrom.getSolde();
-
         userTo.setSolde(soldeUserTo + soldeTo);
         userFrom.setSolde(soldeUserFrom - moneyTransfertRequest.getSolde_from());
+        System.out.println("end SOLDE USER");
 
+        System.out.println("start send transaction");
         sendTransaction.setIban(transaction.getIban());
         sendTransaction.setDate(transaction.getDate());
         sendTransaction.setSolde_to(transaction.getSoldeTo());
@@ -79,8 +97,12 @@ public class UrlService {
         sendTransaction.setSolde_app(transaction.getSoldeApp());
         sendTransaction.setId_user_from(userDTOFrom);
         sendTransaction.setId_user_to(userDTOTo);
+        System.out.println("end send transaction" + sendTransaction);
 
+        System.out.println("start add transaction");
         transactionService.addTransactions(transaction);
+        System.out.println("end add transaction");
+        System.out.println("start return");
         return sendTransaction;
     }
 
@@ -182,6 +204,12 @@ public class UrlService {
         user.setSolde(user.getSolde()+ outRequest.getMontant());
 
         Transaction transaction = new Transaction();
+        for(int i = 1 ; i<=999 ; i++){
+            if(!transactionsRepository.existsById(i)){
+                transaction.setId(i);
+                break;
+            }
+        }
         transaction.setDate(date);
         transaction.setIban(user.getIban());
         transaction.setUserTo(user);
@@ -199,6 +227,12 @@ public class UrlService {
         user.setSolde(user.getSolde()- outRequest.getMontant());
 
         Transaction transaction = new Transaction();
+        for(int i = 1 ; i<=999 ; i++){
+            if(!transactionsRepository.existsById(i)){
+                transaction.setId(i);
+                break;
+            }
+        }
         transaction.setDate(date);
         transaction.setIban(user.getIban());
         transaction.setUserFrom(user);
